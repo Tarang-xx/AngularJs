@@ -1,0 +1,21 @@
+.ui-grid-row,
+.ui-grid-cell
+{
+    height:100px !important ;
+    img{
+        height:100px !important ;
+    }
+}
+
+.grid {
+    width: 100%;
+    // height: calc(100vh - 100px );
+    height: auto !important;
+  }
+.ui-grid-pager-panel
+{
+    bottom: -40px;
+}
+.table{
+    background: #FFF;
+}

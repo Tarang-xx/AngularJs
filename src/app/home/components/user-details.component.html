@@ -1,0 +1,19 @@
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">User Details</span>
+        </md-card-title-text>
+    </md-card-title>
+</md-card>
+<table class="table">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Label</th>
+        <th scope="col">Info</th>
+    </tr>
+    <tr ng-repeat="(key, prop) in $ctrl.user track by $index" ng-if="!key.includes('url')">
+        <td>{{$index}}</td>
+        <td>{{key}}</td>
+        <td>{{prop}}</td>
+    </tr>
+</table>

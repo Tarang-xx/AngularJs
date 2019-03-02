@@ -1,0 +1,16 @@
+/**
+ * Vendor styles go here
+ **/
+
+ @import '~bootstrap/dist/css/bootstrap.css'; 
+ @import '~angular-ui-grid/ui-grid.css'; 
+ @import '~angular-material/angular-material.min.css';
+ @import '~font-awesome/css/font-awesome.min.css';
+
+/**
+ * Global styles go here
+ **/
+
+ body {
+     background-color: #EEE;     
+ }
