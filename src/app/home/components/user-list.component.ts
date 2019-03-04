@@ -4,15 +4,18 @@ import './user.list.component.scss'
 class UserListController {
   users: any[];
   gridOptions: any = null;
+  grid1Api: any;
   constructor(
     private usersService: UsersService,
-    private $state: angular.ui.IStateService
+    private $state: angular.ui.IStateService,
+    private uiGridConstants: any
   ) {
     'ngInject';
     this.gridOptions = {
       paginationPageSizes: [5, 10, 15],
       paginationPageSize: 5,
       enableSorting: true,
+      enableFiltering: true,
       rowTemplate: `       
           <div ng-if="!row.entity.merge" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell"  ui-grid-cell></div>
              `,
@@ -26,33 +29,49 @@ class UserListController {
               <source media="(min-width: 465px)" srcset="{{row.entity.avatar_url}}">
               <img src="{{row.entity.avatar_url}}" alt="Flowers" style="width:auto;">
             </picture>
-          </div>` },
-        { name: 'Name', field: 'login' },
-        { name: 'UserId', field: 'id' },
+          </div>`,
+          enableFiltering: false,
+        },
         {
-          name: 'Action',
-          cellTemplate: `<div class="ui-grid-cell-contents" title="TOOLTIP">
+          name: 'UserId', field: 'id', sort: {
+            direction: this.uiGridConstants.ASC,
+            priority: 1
+          },
+          sortingAlgorithm: (a:any, b:any, rowA:any, rowB:any, direction:any)=> {
+            return a-b
+          }
+        },
+      { name: 'Name', field: 'login' },
+      {
+        name: 'Action',
+        cellTemplate: `<div class="ui-grid-cell-contents" title="TOOLTIP">
           <button type="button" class="btn btn-primary" ng-click="grid.appScope.$ctrl.viewDetails(row.entity.id)">View Details</button>
-        </div>` }
-      ]
-    };
-  }
+        </div>`,
+        enableFiltering: false,
+        enableSorting: false,
+      }
+      ],
+    onRegisterApi: function(gridApi: any) {
+      this.grid1Api = gridApi;
+    }
+  };
+}
 
-  $onInit() {
-    this.fetchData();
+$onInit() {
+  this.fetchData();
 
-  }
+}
   private fetchData() {
-    this.usersService.getUsers()
-      .then(users => {
-        this.users = users.data;
-        this.gridOptions.data = this.users;
-      });
-  }
+  this.usersService.getUsers()
+    .then(users => {
+      this.users = users.data;
+      this.gridOptions.data = this.users;
+    });
+}
 
   private viewDetails(id: string) {
-    this.$state.go('UserDetails', { id: id });
-  }
+  this.$state.go('UserDetails', { id: id });
+}
 }
 
 export class UserListComponent implements angular.IComponentOptions {

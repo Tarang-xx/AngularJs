@@ -1,10 +1,12 @@
-.loginBox {
+login{
+  .loginBox {
     max-width:  90%;
     width: 500px
   }
-.login-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .loginContainer {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
 }
