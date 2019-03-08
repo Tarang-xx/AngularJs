@@ -1,7 +1,7 @@
 
 import './login.css';
 
-function LoginComponent(authenticationService, $state, $scope) {
+function LoginController(authenticationService, $state, $scope) {
     $scope.$onInit = function () {
         // this.$state.go('userList');
         authenticationService.ClearCredentials();
@@ -22,7 +22,7 @@ function LoginComponent(authenticationService, $state, $scope) {
 
 
 
-export default LoginComponent;
+export default LoginController;
 
 
 
