@@ -12,7 +12,7 @@ module.exports = {
     context: ROOT,
 
     resolve: {
-        extensions: ['.ts', '.js']
+        extensions: ['.js']
     },
 
     module: {
@@ -37,7 +37,10 @@ module.exports = {
                     'awesome-typescript-loader'
                 ]
             },
-
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+              },
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
@@ -83,5 +86,5 @@ module.exports = {
         new ExtractTextPlugin('css/style.css')
     ],
 
-    entry: './index.ts'
+    entry: './index.js'
 };

@@ -1,0 +1,24 @@
+<div ng-controller="appController">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm"
+        ng-if='globals.currentUser'>
+
+        <h5 class="my-0 mr-md-auto font-weight-normal ">
+            Welcome : {{globals.currentUser.username}}</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="previous" ui-sref="UserList" title="Back to users list">
+                <md-button class="md-fab" aria-label="Eat cake">
+                    <i class="fa fa-backward"></i>
+                </md-button>
+            </a>
+        </nav>
+        <a ui-sref="logins" title="LogOut">
+            <md-button class="md-fab md-primary md-hue-2" aria-label="Profile">
+                <i class="fa fa-sign-out"></i>
+            </md-button>
+        </a>
+    </div>
+</div>
+<div class="container app-container">
+    <div ui-view></div>
+</div>
+</div>

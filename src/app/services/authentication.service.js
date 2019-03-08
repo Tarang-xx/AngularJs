@@ -2,10 +2,10 @@
 
     keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
 
-    encode: function (input: any) {
-        let output: any = '';
-        let chr1: any, chr2: any, chr3: any = '';
-        let enc1: any, enc2: any, enc3: any, enc4: any = '';
+    encode: function (input) {
+        let output = '';
+        let chr1, chr2, chr3 = '';
+        let enc1, enc2, enc3, enc4 = '';
         let i = 0;
 
         do {
@@ -36,10 +36,10 @@
         return output;
     },
 
-    decode: function (input: any) {
-        var output: any = '';
-        var chr1: any, chr2: any, chr3: any = '';
-        var enc1: any, enc2: any, enc3: any, enc4: any = '';
+    decode: function (input) {
+        var output = '';
+        var chr1, chr2, chr3 = '';
+        var enc1, enc2, enc3, enc4 = '';
         var i = 0;
 
         // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
@@ -80,23 +80,11 @@
 };
 
 
-export class AuthenticationService {
-    static selector = 'authenticationService';
-    $rootScope: any;
-    $http: any;
-    constructor($http: any, $rootScope: any) {
+export default function AuthenticationService($rootScope, $http) {
 
-        'ngInject';
-       
-        this.$rootScope = $rootScope;
-        this.$http = $http;
-    }
-
-
-    Login(username: any, password: any) {
-
-      return new Promise(function (resolve: any, reject: any) {
-            let response: any;
+    this.Login = (username, password) => {
+        return new Promise(function (resolve, reject) {
+            let response;
             if (username !== null && password !== null) {
                 response = { success: true };
             }
@@ -104,13 +92,11 @@ export class AuthenticationService {
                 resolve(response);
             }, 1000);
         });
-
-
     }
-    SetCredentials(username: any, password: any) {
+    this.SetCredentials = (username, password) => {
         var authdata = Base64.encode(username + ':' + password);
 
-        this.$rootScope.globals = {
+        $rootScope.globals = {
             currentUser: {
                 username: username,
                 authdata: authdata
@@ -123,11 +109,11 @@ export class AuthenticationService {
         // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
         var cookieExp = new Date();
         cookieExp.setDate(cookieExp.getDate() + 7);
-        
+
     }
 
-    ClearCredentials() {
-        this.$rootScope.globals = {};
+    this.ClearCredentials = () => {
+        $rootScope.globals = {};
         // this.$http.defaults.headers.common.Authorization = 'Basic';
     }
 }

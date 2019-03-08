@@ -1,4 +1,5 @@
-<md-card>
+<div ng-controller="userDetailsController"> 
+<md-card >
     <md-card-title>
         <md-card-title-text>
             <span class="md-headline">User Details</span>
@@ -11,9 +12,11 @@
         <th scope="col">Label</th>
         <th scope="col">Info</th>
     </tr>
-    <tr ng-repeat="(key, prop) in $ctrl.user track by $index" ng-if="!key.includes('url')">
+    <tr ng-repeat="(key, prop) in user track by $index" ng-if="!key.includes('url')">
         <td>{{$index}}</td>
         <td>{{key}}</td>
         <td>{{prop}}</td>
     </tr>
 </table>
+
+</div>

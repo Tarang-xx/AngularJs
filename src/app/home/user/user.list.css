@@ -1,0 +1,18 @@
+
+.ui-grid-row,
+.ui-grid-cell
+    {
+        height:100px !important ;        
+    }
+.ui-grid-cell img{
+        height:100px !important ;
+    }
+.grid {
+        width: 100%;
+        height: auto !important;
+      }
+.ui-grid-pager-panel
+    {
+        bottom: -40px !important; 
+    }
+    
